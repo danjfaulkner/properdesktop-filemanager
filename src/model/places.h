@@ -13,7 +13,7 @@
 #include <string>
 #include <vector>
 
-namespace cutefish::files {
+namespace properdesktop::files {
 class VolumeManager;
 struct Volume;
 }
@@ -22,7 +22,7 @@ namespace fm {
 
 // PlacesModel: the sidebar's rows. Favourites (kept in filemanager.conf
 // [Sidebar] favorites), the trash, removable disks under Locations, internal
-// ones under Internal Drives, and the phones and servers cutefish-mountd
+// ones under Internal Drives, and the phones and servers properdesktop-mountd
 // serves, under Locations and Network.
 class PlacesModel
 {

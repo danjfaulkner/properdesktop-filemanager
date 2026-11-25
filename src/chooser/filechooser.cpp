@@ -14,8 +14,8 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-using cutefish::i18n::tr;
-using cutefish::i18n::trn;
+using properdesktop::i18n::tr;
+using properdesktop::i18n::trn;
 
 namespace fm {
 

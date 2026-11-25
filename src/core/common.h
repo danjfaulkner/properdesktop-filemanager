@@ -3,19 +3,19 @@
 
 #pragma once
 
-namespace cutefish::base {
+namespace properdesktop::base {
 }
 
-namespace cutefish::ui {
+namespace properdesktop::ui {
 }
 
-namespace cutefish::files {
+namespace properdesktop::files {
 }
 
 namespace fm {
 
-namespace base = ::cutefish::base;
-namespace ui = ::cutefish::ui;
-namespace files = ::cutefish::files;
+namespace base = ::properdesktop::base;
+namespace ui = ::properdesktop::ui;
+namespace files = ::properdesktop::files;
 
 } // namespace fm

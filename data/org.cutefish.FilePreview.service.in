@@ -1,3 +1,0 @@
-[D-BUS Service]
-Name=org.cutefish.FilePreview
-Exec=@CMAKE_INSTALL_FULL_BINDIR@/cutefish-filemanager --dbus-activated

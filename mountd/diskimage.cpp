@@ -16,7 +16,7 @@
 #include <unistd.h>
 #include <zlib.h>
 
-using cutefish::i18n::tr;
+using properdesktop::i18n::tr;
 
 static constexpr uint32_t kChunkZeroFill = 0x00000000;
 static constexpr uint32_t kChunkRaw = 0x00000001;

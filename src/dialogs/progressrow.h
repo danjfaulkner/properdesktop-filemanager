@@ -7,7 +7,7 @@
 
 #include "ui/cell_layout.h"
 
-namespace cutefish::ui {
+namespace properdesktop::ui {
 class HeaderButton;
 class ProgressBar;
 }

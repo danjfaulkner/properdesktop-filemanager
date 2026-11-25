@@ -9,7 +9,7 @@
 
 #include "base/dbus.h"
 #include "base/url.h"
-#include "cutefish/files/volume_manager.h"
+#include "properdesktop/files/volume_manager.h"
 #include "ui/application.h"
 
 #include <gtest/gtest.h>
@@ -17,7 +17,7 @@
 
 #include <filesystem>
 
-using namespace cutefish;
+using namespace properdesktop;
 using base::dbus::Connection;
 using base::dbus::MethodCall;
 using base::dbus::ObjectPath;
@@ -37,8 +37,8 @@ TEST(PlacesModelTest, FavoritesAddMoveRemoveAndPersist)
     ASSERT_TRUE(fmtest::writeFile(settings, "[Sidebar]\nfavorites=\n"));
     std::filesystem::create_directories(folders.filePath("first"));
     std::filesystem::create_directories(folders.filePath("second"));
-    const std::string first = cutefish::base::url::fromLocalFile(folders.filePath("first"));
-    const std::string second = cutefish::base::url::fromLocalFile(folders.filePath("second"));
+    const std::string first = properdesktop::base::url::fromLocalFile(folders.filePath("first"));
+    const std::string second = properdesktop::base::url::fromLocalFile(folders.filePath("second"));
 
     const auto checkTrash = [](const PlacesModel& places) {
         const PlacesModel::Place& trash = places.at(places.favoriteCount());
@@ -52,7 +52,7 @@ TEST(PlacesModelTest, FavoritesAddMoveRemoveAndPersist)
     checkTrash(model);
     EXPECT_FALSE(model.canAddFavorites({}));
     EXPECT_FALSE(model.addFavorites({"https://example.com"}, 0));
-    EXPECT_FALSE(model.addFavorites({first, cutefish::base::url::fromLocalFile(folders.filePath("missing"))}, 0));
+    EXPECT_FALSE(model.addFavorites({first, properdesktop::base::url::fromLocalFile(folders.filePath("missing"))}, 0));
     EXPECT_EQ(model.favoriteCount(), 0);
     EXPECT_TRUE(model.addFavorites({first, second}, 0));
     EXPECT_EQ(model.favoriteCount(), 2);
@@ -88,7 +88,7 @@ TEST(PlacesModelTest, FavoritesAddMoveRemoveAndPersist)
 TEST(PlacesModelTest, PathCrumbsNameHomeAndStandardFolders)
 {
     const std::string home = fm::homePath();
-    const std::vector<fm::Crumb> crumbs = fm::pathCrumbs(cutefish::base::url::fromLocalFile(home + "/a/b"));
+    const std::vector<fm::Crumb> crumbs = fm::pathCrumbs(properdesktop::base::url::fromLocalFile(home + "/a/b"));
     ASSERT_GE(crumbs.size(), 3u);
     EXPECT_EQ(crumbs.front().name, "Home");
     EXPECT_EQ(crumbs[crumbs.size() - 2].name, "a");

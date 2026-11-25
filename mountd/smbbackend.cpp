@@ -17,7 +17,7 @@
 #include <sys/time.h>
 #include <unistd.h>
 
-using cutefish::i18n::tr;
+using properdesktop::i18n::tr;
 
 // Equal under full Unicode case folding.
 static bool sameIgnoringCase(const std::string &a, const std::string &b)
@@ -43,7 +43,7 @@ static bool sameIgnoringCase(const std::string &a, const std::string &b)
 // 32 hexadecimal digits without hyphens.
 static std::string hexUuid()
 {
-    std::string text = cutefish::base::Uuid::generate().toString();
+    std::string text = properdesktop::base::Uuid::generate().toString();
     std::erase(text, '-');
     return text;
 }
@@ -122,12 +122,12 @@ SMBCCTX *SmbBackend::createContext(const Credentials &credentials)
 
 std::string SmbBackend::urlFor(const std::string &path) const
 {
-    std::string url = "smb://" + cutefish::base::url::percentEncoded(m_url.hostForUrl(), "[]:");
+    std::string url = "smb://" + properdesktop::base::url::percentEncoded(m_url.hostForUrl(), "[]:");
     if (m_url.port > 0)
         url += ':' + std::to_string(m_url.port);
 
     // libsmbclient decodes %XX in every name, so a literal % must be encoded.
-    url += cutefish::base::url::percentEncoded(path, "/!$&'()*+,;=:@ ~");
+    url += properdesktop::base::url::percentEncoded(path, "/!$&'()*+,;=:@ ~");
     return url;
 }
 
@@ -462,7 +462,7 @@ int SmbBackend::rename(const std::string &from, const std::string &to, unsigned 
         } else {
             // The file replaced waits aside until the rename lands: a server that refuses
             // the rename after allowing the delete would otherwise lose it.
-            const std::string aside = urlFor(to.substr(0, to.rfind('/') + 1) + ".cutefish-replaced-"
+            const std::string aside = urlFor(to.substr(0, to.rfind('/') + 1) + ".properdesktop-replaced-"
                                              + hexUuid());
             if (renameUrl(m_context, target.c_str(), m_context, aside.c_str()) != 0)
                 return -(errno ? errno : EIO);

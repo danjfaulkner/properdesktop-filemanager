@@ -39,7 +39,7 @@
 #include <string>
 #include <vector>
 
-using namespace cutefish;
+using namespace properdesktop;
 
 class Host : public fm::FileManagerHost
 {

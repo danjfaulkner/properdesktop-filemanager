@@ -7,12 +7,12 @@
 #include "base/i18n.h"
 #include "base/strings.h"
 
-#include "cutefish/files/url.h"
+#include "properdesktop/files/url.h"
 
 namespace fm {
 
 using base::dbus::VariantMap;
-using cutefish::i18n::tr;
+using properdesktop::i18n::tr;
 
 // Connecting asks the server and maybe the keyring; a slow server answers late.
 static constexpr std::chrono::seconds kMountTimeout(120);
@@ -24,8 +24,8 @@ MountsClient& MountsClient::instance()
 }
 
 MountsClient::MountsClient()
-    : m_proxy(base::dbus::Connection::session(), "org.cutefish.Mounts1", "/org/cutefish/Mounts1",
-              "org.cutefish.Mounts1")
+    : m_proxy(base::dbus::Connection::session(), "org.properdesktop.Mounts1", "/org/properdesktop/Mounts1",
+              "org.properdesktop.Mounts1")
 {
     if (!m_proxy.isValid())
         return;

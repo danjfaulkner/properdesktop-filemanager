@@ -23,7 +23,7 @@
 #include <string>
 #include <vector>
 
-using namespace cutefish;
+using namespace properdesktop;
 using base::dbus::Connection;
 using base::dbus::MethodCall;
 using base::dbus::Variant;
@@ -220,9 +220,9 @@ TEST(DiskImageWindowTest, OpeningAnImageAsksForItsVolumesWindow)
     ASSERT_TRUE(writeFile(folder.filePath("Ghostty.dmg")));
 
     std::unique_ptr<Connection> service = Connection::open(Connection::Bus::Session, &loop);
-    ASSERT_TRUE(service && service->requestName("org.cutefish.Mounts1"));
+    ASSERT_TRUE(service && service->requestName("org.properdesktop.Mounts1"));
     std::vector<std::string> mounted;
-    base::dbus::Object mounts(service.get(), "/org/cutefish/Mounts1", "org.cutefish.Mounts1");
+    base::dbus::Object mounts(service.get(), "/org/properdesktop/Mounts1", "org.properdesktop.Mounts1");
     mounts.addMethod("Mount", "sa{sv}", "sa{sv}", [&](MethodCall& call) {
         std::string location;
         VariantMap options;

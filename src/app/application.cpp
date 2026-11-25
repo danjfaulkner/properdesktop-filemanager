@@ -36,10 +36,10 @@
 
 namespace fm {
 
-static constexpr const char* kServiceName = "org.cutefish.FileManager";
+static constexpr const char* kServiceName = "org.properdesktop.FileManager";
 static constexpr const char* kFreedesktopServiceName = "org.freedesktop.FileManager1";
-static constexpr const char* kPreviewServiceName = "org.cutefish.FilePreview";
-static constexpr const char* kChooserServiceName = "org.cutefish.FileChooser";
+static constexpr const char* kPreviewServiceName = "org.properdesktop.FilePreview";
+static constexpr const char* kChooserServiceName = "org.properdesktop.FileChooser";
 
 Application::Application(ui::Application& app, bool daemon, bool dbusActivated)
     : m_app(app)
@@ -215,7 +215,7 @@ void Application::openFiles(const std::vector<std::string>& paths)
                 if (status == "mounted")
                     openDiskImageWindow(value);
                 else
-                    notifications::show("cutefish-filemanager", "drive-removable-media", value, 5000);
+                    notifications::show("properdesktop-filemanager", "drive-removable-media", value, 5000);
             });
             continue;
         }

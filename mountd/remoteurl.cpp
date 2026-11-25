@@ -6,7 +6,7 @@
 #include "base/strings.h"
 #include "base/url.h"
 
-using namespace cutefish::base;
+using namespace properdesktop::base;
 
 RemoteUrl RemoteUrl::parse(std::string_view text)
 {

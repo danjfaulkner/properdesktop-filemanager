@@ -15,7 +15,7 @@
 #include <ctime>
 #include <sys/resource.h>
 
-using namespace cutefish;
+using namespace properdesktop;
 
 static double cpuMs()
 {

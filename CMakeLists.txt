@@ -11,13 +11,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 include(GNUInstallDirs)
 include(CTest)
 
-find_package(CutefishToolkit REQUIRED)
-find_package(CutefishFiles REQUIRED)
+find_package(ProperDesktopToolkit REQUIRED)
+find_package(ProperDesktopFiles REQUIRED)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(ICU REQUIRED IMPORTED_TARGET icu-uc icu-i18n)
 
 # ---------------------------------------------------------------------------
-# cutefish-mountd: phones, servers and disk images mounted with FUSE, so their
+# properdesktop-mountd: phones, servers and disk images mounted with FUSE, so their
 # files are local paths to everything else.
 # ---------------------------------------------------------------------------
 pkg_check_modules(Fuse3 REQUIRED IMPORTED_TARGET fuse3)
@@ -50,7 +50,7 @@ add_library(mountd-core STATIC
 target_include_directories(mountd-core PUBLIC mountd)
 target_include_directories(mountd-core PUBLIC ${LZFSE_INCLUDE_DIR})
 target_link_libraries(mountd-core PUBLIC
-    Cutefish::ToolkitBase
+    ProperDesktop::ToolkitBase
     PkgConfig::Fuse3
     PkgConfig::LibSsh
     PkgConfig::SmbClient
@@ -63,18 +63,18 @@ target_link_libraries(mountd-core PUBLIC
     ${LZFSE_LIBRARY}
 )
 
-add_executable(cutefish-mountd mountd/main.cpp)
-target_link_libraries(cutefish-mountd PRIVATE mountd-core)
+add_executable(properdesktop-mountd mountd/main.cpp)
+target_link_libraries(properdesktop-mountd PRIVATE mountd-core)
 
-configure_file(mountd/org.cutefish.Mounts1.service.in org.cutefish.Mounts1.service @ONLY)
+configure_file(mountd/org.properdesktop.Mounts1.service.in org.properdesktop.Mounts1.service @ONLY)
 
-install(TARGETS cutefish-mountd RUNTIME DESTINATION ${CMAKE_INSTALL_LIBEXECDIR})
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/org.cutefish.Mounts1.service
+install(TARGETS properdesktop-mountd RUNTIME DESTINATION ${CMAKE_INSTALL_LIBEXECDIR})
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/org.properdesktop.Mounts1.service
         DESTINATION ${CMAKE_INSTALL_DATADIR}/dbus-1/services)
 
 # ---------------------------------------------------------------------------
-# cutefish-filemanager-daemon: file operations that outlive the windows,
-# org.cutefish.FileOperations.
+# properdesktop-filemanager-daemon: file operations that outlive the windows,
+# org.properdesktop.FileOperations.
 # ---------------------------------------------------------------------------
 find_path(LIBZIP_INCLUDE_DIR zip.h)
 find_library(LIBZIP_LIBRARY NAMES zip)
@@ -89,15 +89,15 @@ add_library(fileoperations-core STATIC
     daemon/fileoperationsservice.cpp
 )
 target_include_directories(fileoperations-core PUBLIC ${PROJECT_SOURCE_DIR} daemon ${LIBZIP_INCLUDE_DIR})
-target_link_libraries(fileoperations-core PUBLIC Cutefish::ToolkitBase Cutefish::Files ${LIBZIP_LIBRARY}
+target_link_libraries(fileoperations-core PUBLIC ProperDesktop::ToolkitBase ProperDesktop::Files ${LIBZIP_LIBRARY}
                       PkgConfig::LibArchive)
 
-add_executable(cutefish-filemanager-daemon daemon/main.cpp)
-target_link_libraries(cutefish-filemanager-daemon PRIVATE fileoperations-core)
+add_executable(properdesktop-filemanager-daemon daemon/main.cpp)
+target_link_libraries(properdesktop-filemanager-daemon PRIVATE fileoperations-core)
 
-configure_file(daemon/org.cutefish.FileOperations.service.in org.cutefish.FileOperations.service @ONLY)
-install(TARGETS cutefish-filemanager-daemon RUNTIME DESTINATION ${CMAKE_INSTALL_LIBEXECDIR})
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/org.cutefish.FileOperations.service
+configure_file(daemon/org.properdesktop.FileOperations.service.in org.properdesktop.FileOperations.service @ONLY)
+install(TARGETS properdesktop-filemanager-daemon RUNTIME DESTINATION ${CMAKE_INSTALL_LIBEXECDIR})
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/org.properdesktop.FileOperations.service
         DESTINATION ${CMAKE_INSTALL_DATADIR}/dbus-1/services)
 
 # ---------------------------------------------------------------------------
@@ -127,7 +127,7 @@ add_library(fm-core STATIC
     src/ops/operations.cpp
 )
 target_include_directories(fm-core PUBLIC src)
-target_link_libraries(fm-core PUBLIC Cutefish::Toolkit Cutefish::Files Cutefish::FilesThumbnails)
+target_link_libraries(fm-core PUBLIC ProperDesktop::Toolkit ProperDesktop::Files ProperDesktop::FilesThumbnails)
 
 # The browser window, its views and dialogs.
 add_library(fm-ui STATIC
@@ -164,25 +164,25 @@ add_library(fm-ui STATIC
 )
 target_link_libraries(fm-ui PUBLIC fm-core PkgConfig::ICU)
 
-add_executable(cutefish-filemanager
+add_executable(properdesktop-filemanager
     src/app/application.cpp
     src/app/chooserservice.cpp
     src/app/dialogs.cpp
     src/app/main.cpp
     src/app/previewservice.cpp
 )
-target_link_libraries(cutefish-filemanager PRIVATE fm-ui)
-install(TARGETS cutefish-filemanager RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
-configure_file(data/org.cutefish.FileManager1.service.in org.cutefish.FileManager1.service @ONLY)
-configure_file(data/org.cutefish.FilePreview.service.in org.cutefish.FilePreview.service @ONLY)
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/org.cutefish.FileManager1.service
-              ${CMAKE_CURRENT_BINARY_DIR}/org.cutefish.FilePreview.service
+target_link_libraries(properdesktop-filemanager PRIVATE fm-ui)
+install(TARGETS properdesktop-filemanager RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
+configure_file(data/org.properdesktop.FileManager1.service.in org.properdesktop.FileManager1.service @ONLY)
+configure_file(data/org.properdesktop.FilePreview.service.in org.properdesktop.FilePreview.service @ONLY)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/org.properdesktop.FileManager1.service
+              ${CMAKE_CURRENT_BINARY_DIR}/org.properdesktop.FilePreview.service
         DESTINATION ${CMAKE_INSTALL_DATADIR}/dbus-1/services)
-install(FILES data/60-cutefish-filemanager.rules DESTINATION ${CMAKE_INSTALL_DATADIR}/polkit-1/rules.d)
+install(FILES data/60-properdesktop-filemanager.rules DESTINATION ${CMAKE_INSTALL_DATADIR}/polkit-1/rules.d)
 
-cutefish_add_translations(cutefish-filemanager SOURCES src daemon mountd
-                          DESKTOP_FILES data/cutefish-filemanager.desktop)
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/cutefish-filemanager.desktop DESTINATION ${CMAKE_INSTALL_DATADIR}/applications)
+properdesktop_add_translations(properdesktop-filemanager SOURCES src daemon mountd
+                          DESKTOP_FILES data/properdesktop-filemanager.desktop)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/properdesktop-filemanager.desktop DESTINATION ${CMAKE_INSTALL_DATADIR}/applications)
 
 if(BUILD_TESTING)
     add_subdirectory(tests)

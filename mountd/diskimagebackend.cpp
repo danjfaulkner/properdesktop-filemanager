@@ -12,7 +12,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-using cutefish::i18n::tr;
+using properdesktop::i18n::tr;
 
 DiskImageBackend::DiskImageBackend(const std::string &path)
     : m_path(path)

@@ -1,0 +1,3 @@
+[D-BUS Service]
+Name=org.properdesktop.FilePreview
+Exec=@CMAKE_INSTALL_FULL_BINDIR@/properdesktop-filemanager --dbus-activated

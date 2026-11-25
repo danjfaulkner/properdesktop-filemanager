@@ -12,7 +12,7 @@
 #include <cstring>
 #include <sys/stat.h>
 
-using cutefish::i18n::tr;
+using properdesktop::i18n::tr;
 
 static constexpr uint32_t kTypeMask = 0xFFFF;
 static constexpr uint32_t kContainerType = 0x1;

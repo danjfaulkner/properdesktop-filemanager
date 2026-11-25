@@ -8,7 +8,7 @@
 #include <string>
 #include <vector>
 
-namespace cutefish::ui {
+namespace properdesktop::ui {
 struct FontFace;
 }
 

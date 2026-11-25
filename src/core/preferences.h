@@ -11,13 +11,13 @@
 #include <string>
 #include <vector>
 
-namespace cutefish::base {
+namespace properdesktop::base {
 class Settings;
 }
 
 namespace fm {
 
-// The browser's settings in ~/.config/cutefish/filemanager.conf, which this
+// The browser's settings in ~/.config/properdesktop/filemanager.conf, which this
 // process alone writes; every window shares one instance.
 class Preferences
 {

@@ -23,9 +23,9 @@
 namespace fm {
 
 using ui::rounding::centeredStart;
-using cutefish::i18n::format;
-using cutefish::i18n::tr;
-using cutefish::i18n::trc;
+using properdesktop::i18n::format;
+using properdesktop::i18n::tr;
+using properdesktop::i18n::trc;
 
 // One recent server: a 32 px row, lit when the field holds it.
 class RecentServer : public ui::View

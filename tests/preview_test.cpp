@@ -22,7 +22,7 @@
 
 using fm::PreviewFile;
 using fmtest::TemporaryDir;
-using namespace cutefish;
+using namespace properdesktop;
 
 extern ui::Application* s_app;
 
@@ -30,7 +30,7 @@ static PreviewFile describe(const TemporaryDir& directory, const std::string& na
 {
     const std::string path = directory.filePath(name);
     fmtest::writeFile(path, contents);
-    return fm::describeFile(cutefish::base::url::fromLocalFile(path));
+    return fm::describeFile(properdesktop::base::url::fromLocalFile(path));
 }
 
 static std::string encode(const std::string& utf8, const char* encoding)
@@ -109,7 +109,7 @@ TEST(PreviewTest, FoldersCountTheirItems)
     TemporaryDir directory;
     fmtest::writeFile(directory.filePath("a"));
     fmtest::writeFile(directory.filePath(".hidden"));
-    const PreviewFile file = fm::describeFile(cutefish::base::url::fromLocalFile(directory.path()));
+    const PreviewFile file = fm::describeFile(properdesktop::base::url::fromLocalFile(directory.path()));
     EXPECT_TRUE(file.folder);
     EXPECT_EQ(file.itemCount, 2u);
     EXPECT_EQ(file.icon, "folder");
@@ -118,7 +118,7 @@ TEST(PreviewTest, FoldersCountTheirItems)
 TEST(PreviewTest, MissingAndRemoteFilesSayWhy)
 {
     TemporaryDir directory;
-    EXPECT_FALSE(fm::describeFile(cutefish::base::url::fromLocalFile(directory.filePath("gone"))).message.empty());
+    EXPECT_FALSE(fm::describeFile(properdesktop::base::url::fromLocalFile(directory.filePath("gone"))).message.empty());
     EXPECT_FALSE(fm::describeFile("sftp://host/file").message.empty());
 }
 
@@ -151,7 +151,7 @@ TEST(PreviewTest, FontsAreDescribedByTheirFaces)
     TemporaryDir directory;
     const std::string path = directory.filePath("Sample.otf");
     std::filesystem::copy_file(kFont, path);
-    const PreviewFile file = fm::describeFile(cutefish::base::url::fromLocalFile(path));
+    const PreviewFile file = fm::describeFile(properdesktop::base::url::fromLocalFile(path));
     ASSERT_EQ(file.kind, PreviewFile::Kind::Font);
     ASSERT_EQ(file.font.faces.size(), 1u);
     EXPECT_EQ(file.font.defaultFace, 0);
@@ -170,7 +170,7 @@ TEST(PreviewTest, FontsAreDescribedByTheirFaces)
 TEST(PreviewTest, FontCollectionsListEveryFace)
 {
     REQUIRE_FONT(kFontCollection);
-    const PreviewFile file = fm::describeFile(cutefish::base::url::fromLocalFile(kFontCollection));
+    const PreviewFile file = fm::describeFile(properdesktop::base::url::fromLocalFile(kFontCollection));
     ASSERT_EQ(file.kind, PreviewFile::Kind::Font);
     ASSERT_GT(file.font.faces.size(), 1u);
     ASSERT_LT(size_t(file.font.defaultFace), file.font.faces.size());
@@ -180,7 +180,7 @@ TEST(PreviewTest, FontCollectionsListEveryFace)
 
 static std::vector<std::string> sampleFor(const char* path, const std::string& language)
 {
-    const std::vector<cutefish::ui::FontFace> faces = cutefish::ui::readFontFaces(path);
+    const std::vector<properdesktop::ui::FontFace> faces = properdesktop::ui::readFontFaces(path);
     if (faces.empty())
         return {};
     return fm::fontSampleLines(faces.front(), language);
@@ -227,7 +227,7 @@ TEST(PreviewTest, FontSamplesShowTheFontsScriptsWhenItLacksTheReadersLanguage)
 TEST(PreviewTest, FontsOfOtherScriptsShowTheirOwnLetters)
 {
     REQUIRE_FONT(kArabicFont);
-    const PreviewFile file = fm::describeFile(cutefish::base::url::fromLocalFile(kArabicFont));
+    const PreviewFile file = fm::describeFile(properdesktop::base::url::fromLocalFile(kArabicFont));
     ASSERT_EQ(file.kind, PreviewFile::Kind::Font);
     const fm::FontPreviewFace& face = file.font.faces.front();
     ASSERT_FALSE(face.sample.empty());
@@ -238,7 +238,7 @@ TEST(PreviewTest, FontsOfOtherScriptsShowTheirOwnLetters)
 TEST(PreviewTest, SymbolFontsShowTheCharactersTheyHave)
 {
     REQUIRE_FONT(kSymbolFont);
-    const PreviewFile file = fm::describeFile(cutefish::base::url::fromLocalFile(kSymbolFont));
+    const PreviewFile file = fm::describeFile(properdesktop::base::url::fromLocalFile(kSymbolFont));
     ASSERT_EQ(file.kind, PreviewFile::Kind::Font);
     const fm::FontPreviewFace& face = file.font.faces.front();
     ASSERT_FALSE(face.sample.empty());

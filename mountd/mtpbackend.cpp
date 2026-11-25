@@ -18,9 +18,9 @@
 #include <linux/fs.h>
 #include <unistd.h>
 
-using cutefish::i18n::tr;
+using properdesktop::i18n::tr;
 
-static const cutefish::base::LogCategory lcMtp("cutefish.mountd.mtp");
+static const properdesktop::base::LogCategory lcMtp("properdesktop.mountd.mtp");
 
 static constexpr uint32_t kStorageTop = 0xFFFFFFFF;
 // Standard MTP partial reads carry a 32-bit offset; Android's extension a 64-bit one.
@@ -63,7 +63,7 @@ static std::string childOf(const std::string &folder, const std::string &name)
 // videos many gigabytes large.
 static int spoolFile()
 {
-    const std::string directory = cutefish::base::paths::cacheHome() + "/cutefish-mountd";
+    const std::string directory = properdesktop::base::paths::cacheHome() + "/properdesktop-mountd";
     std::error_code error;
     std::filesystem::create_directories(directory, error);
     return ::open(directory.c_str(), O_TMPFILE | O_RDWR | O_CLOEXEC, 0600);
@@ -157,7 +157,7 @@ std::string MtpBackend::friendlyName() const
         name = LIBMTP_Get_Modelname(m_device);
     }
 
-    const std::string result = name ? std::string(cutefish::base::strings::trimmed(name)) : std::string();
+    const std::string result = name ? std::string(properdesktop::base::strings::trimmed(name)) : std::string();
     free(name);
     return result;
 }

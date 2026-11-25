@@ -8,7 +8,7 @@
 
 #include <gtest/gtest.h>
 
-using namespace cutefish;
+using namespace properdesktop;
 
 // The headless application every test of the binary shares.
 ui::Application* s_app = nullptr;

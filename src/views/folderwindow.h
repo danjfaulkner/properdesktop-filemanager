@@ -16,7 +16,7 @@
 #include <string>
 #include <vector>
 
-namespace cutefish::ui {
+namespace properdesktop::ui {
 class AboutDialog;
 class HeaderButton;
 class Menu;

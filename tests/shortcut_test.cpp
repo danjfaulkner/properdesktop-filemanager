@@ -24,7 +24,7 @@
 
 #include <filesystem>
 
-using namespace cutefish;
+using namespace properdesktop;
 using fmtest::runUntil;
 
 namespace {
@@ -56,17 +56,17 @@ public:
     void windowClosed(fm::FolderWindow*) override {}
 };
 
-// The session's keyboard settings, as org.cutefish.Keyboard1 publishes them.
+// The session's keyboard settings, as org.properdesktop.Keyboard1 publishes them.
 class Keyboard
 {
 public:
     explicit Keyboard(base::dbus::Connection* bus)
-        : m_object(bus, "/org/cutefish/Keyboard1", "org.cutefish.Keyboard1")
+        : m_object(bus, "/org/properdesktop/Keyboard1", "org.properdesktop.Keyboard1")
     {
         m_object.addProperty("shortcutConvention", [this] { return m_convention; });
         m_object.addSignal("shortcutConventionChanged", "");
         m_object.publish();
-        bus->requestName("org.cutefish.Keyboard1");
+        bus->requestName("org.properdesktop.Keyboard1");
     }
 
     void set(const std::string& convention)

@@ -23,9 +23,9 @@
 #include <unistd.h>
 
 namespace fs = std::filesystem;
-using cutefish::i18n::format;
-using cutefish::i18n::tr;
-using cutefish::i18n::trNoop;
+using properdesktop::i18n::format;
+using properdesktop::i18n::tr;
+using properdesktop::i18n::trNoop;
 
 static std::string errorString(int code)
 {
@@ -376,7 +376,7 @@ static struct timespec entryModified(struct archive_entry *entry)
 
 static std::string temporaryPath(const std::string &parentPath, const std::string &prefix)
 {
-    return parentPath + "/." + prefix + '-' + cutefish::base::Uuid::generate().toString();
+    return parentPath + "/." + prefix + '-' + properdesktop::base::Uuid::generate().toString();
 }
 
 static bool isDirectoryEntry(const std::string &name)
@@ -386,8 +386,8 @@ static bool isDirectoryEntry(const std::string &name)
 
 static bool hasSymbolicLinkParent(const std::string &rootPath, const std::string &relativePath)
 {
-    const auto components = cutefish::base::strings::split(relativePath, '/',
-                                                            cutefish::base::strings::SplitBehavior::SkipEmptyParts);
+    const auto components = properdesktop::base::strings::split(relativePath, '/',
+                                                            properdesktop::base::strings::SplitBehavior::SkipEmptyParts);
     std::string currentPath = rootPath;
 
     for (size_t index = 0; index + 1 < components.size(); ++index) {
@@ -614,7 +614,7 @@ bool ArchiveJob::compress(std::string *error)
         return false;
     }
 
-    const std::string tempPath = temporaryPath(parentPath, "cutefish-archive");
+    const std::string tempPath = temporaryPath(parentPath, "properdesktop-archive");
     int openError = 0;
     zip_t *archive = zip_open(tempPath.c_str(), ZIP_CREATE | ZIP_TRUNCATE, &openError);
     if (!archive) {
@@ -724,7 +724,7 @@ bool ArchiveJob::archiveEntryPath(const std::string &archiveName, std::string *r
 
     std::vector<std::string> kept;
     for (const std::string &component :
-         cutefish::base::strings::split(name, '/', cutefish::base::strings::SplitBehavior::SkipEmptyParts)) {
+         properdesktop::base::strings::split(name, '/', properdesktop::base::strings::SplitBehavior::SkipEmptyParts)) {
         if (component == "..")
             return false;
         if (component != ".")
@@ -732,7 +732,7 @@ bool ArchiveJob::archiveEntryPath(const std::string &archiveName, std::string *r
     }
 
     // Tar archives made from "." begin with a "./" entry for the root.
-    *relativePath = cutefish::base::strings::join(kept, "/");
+    *relativePath = properdesktop::base::strings::join(kept, "/");
     return true;
 }
 
@@ -774,7 +774,7 @@ bool ArchiveJob::extractEntryData(struct archive *reader, int fd, uint64_t total
 bool ArchiveJob::extractSingleFile(struct archive *reader, bool empty, const std::string &parentPath,
                                    uint64_t total, std::string *error)
 {
-    const std::string tempPath = temporaryPath(parentPath, "cutefish-extract");
+    const std::string tempPath = temporaryPath(parentPath, "properdesktop-extract");
     const int fd = ::open(tempPath.c_str(), O_WRONLY | O_CREAT | O_EXCL | O_CLOEXEC, 0666);
     if (fd < 0) {
         *error = format(tr("Could not create {path}: {error}"),
@@ -866,7 +866,7 @@ bool ArchiveJob::extractVolumes(const std::vector<std::string> &volumes, std::st
         return extractSingleFile(reader.get(), status == ARCHIVE_EOF, parentPath, total, error);
     }
 
-    const std::string tempPath = temporaryPath(parentPath, "cutefish-extract");
+    const std::string tempPath = temporaryPath(parentPath, "properdesktop-extract");
     if (!makePath(tempPath)) {
         *error = tr("Could not create a temporary extraction folder");
         return false;
@@ -908,7 +908,7 @@ bool ArchiveJob::extractVolumes(const std::vector<std::string> &volumes, std::st
         std::string relativePath;
         bool directory = false;
         if (!archiveEntryPath(name, &relativePath, &directory)) {
-            *error = cutefish::i18n::format(tr("Unsafe path in archive: {path}"), {{"path", name}});
+            *error = properdesktop::i18n::format(tr("Unsafe path in archive: {path}"), {{"path", name}});
             return false;
         }
 
@@ -923,7 +923,7 @@ bool ArchiveJob::extractVolumes(const std::vector<std::string> &volumes, std::st
         }
 
         if (archive_entry_hardlink(entry)) {
-            *error = cutefish::i18n::format(tr("Hard links in archives are not supported: {path}"), {{"path", name}});
+            *error = properdesktop::i18n::format(tr("Hard links in archives are not supported: {path}"), {{"path", name}});
             return false;
         }
 
@@ -931,12 +931,12 @@ bool ArchiveJob::extractVolumes(const std::vector<std::string> &volumes, std::st
         if (type == AE_IFLNK) {
             const std::string target = entryLinkTarget(entry);
             if (directory || relativePath.empty()) {
-                *error = cutefish::i18n::format(tr("Invalid symbolic link path in archive: {path}"), {{"path", name}});
+                *error = properdesktop::i18n::format(tr("Invalid symbolic link path in archive: {path}"), {{"path", name}});
                 return false;
             }
 
             if (target.empty() || target.size() > 16 * 1024) {
-                *error = cutefish::i18n::format(tr("Invalid symbolic link target: {path}"), {{"path", relativePath}});
+                *error = properdesktop::i18n::format(tr("Invalid symbolic link target: {path}"), {{"path", relativePath}});
                 return false;
             }
 
@@ -945,7 +945,7 @@ bool ArchiveJob::extractVolumes(const std::vector<std::string> &volumes, std::st
         }
 
         if (type != AE_IFREG && type != AE_IFDIR) {
-            *error = cutefish::i18n::format(tr("Special files in archives are not supported: {path}"), {{"path", name}});
+            *error = properdesktop::i18n::format(tr("Special files in archives are not supported: {path}"), {{"path", name}});
             return false;
         }
 
@@ -958,7 +958,7 @@ bool ArchiveJob::extractVolumes(const std::vector<std::string> &volumes, std::st
         currentFileChanged(relativePath);
 
         if (!makePath(absoluteParent(destinationPath))) {
-            *error = cutefish::i18n::format(tr("Could not create the parent folder for {path}"), {{"path", relativePath}});
+            *error = properdesktop::i18n::format(tr("Could not create the parent folder for {path}"), {{"path", relativePath}});
             return false;
         }
 
@@ -966,7 +966,7 @@ bool ArchiveJob::extractVolumes(const std::vector<std::string> &volumes, std::st
             // A folder first met as a parent keeps the default mode.
             if ((::mkdir(destinationPath.c_str(), permissions | S_IRWXU) != 0 && errno != EEXIST)
                 || !isDirectory(destinationPath)) {
-                *error = cutefish::i18n::format(tr("Could not create {path}"), {{"path", relativePath}});
+                *error = properdesktop::i18n::format(tr("Could not create {path}"), {{"path", relativePath}});
                 return false;
             }
 
@@ -978,7 +978,7 @@ bool ArchiveJob::extractVolumes(const std::vector<std::string> &volumes, std::st
         const int fd = ::open(destinationPath.c_str(), O_WRONLY | O_CREAT | O_TRUNC | O_NOFOLLOW | O_CLOEXEC,
                               permissions | S_IRUSR | S_IWUSR);
         if (fd < 0) {
-            *error = cutefish::i18n::format(tr("Could not create {path}: {error}"),
+            *error = properdesktop::i18n::format(tr("Could not create {path}: {error}"),
                                             {{"path", relativePath}, {"error", errorString(errno)}});
             return false;
         }
@@ -994,7 +994,7 @@ bool ArchiveJob::extractVolumes(const std::vector<std::string> &volumes, std::st
         }
 
         if (::close(fd) != 0) {
-            *error = cutefish::i18n::format(tr("Could not write {path}: {error}"),
+            *error = properdesktop::i18n::format(tr("Could not write {path}: {error}"),
                                             {{"path", relativePath}, {"error", errorString(errno)}});
             return false;
         }
@@ -1010,22 +1010,22 @@ bool ArchiveJob::extractVolumes(const std::vector<std::string> &volumes, std::st
 
         const std::string destinationPath = tempPath + '/' + link.relativePath;
         if (hasSymbolicLinkParent(tempPath, link.relativePath)) {
-            *error = cutefish::i18n::format(tr("Symbolic link parent in archive: {path}"), {{"path", link.relativePath}});
+            *error = properdesktop::i18n::format(tr("Symbolic link parent in archive: {path}"), {{"path", link.relativePath}});
             return false;
         }
 
         if (!makePath(absoluteParent(destinationPath))) {
-            *error = cutefish::i18n::format(tr("Could not create the parent folder for {path}"), {{"path", link.relativePath}});
+            *error = properdesktop::i18n::format(tr("Could not create the parent folder for {path}"), {{"path", link.relativePath}});
             return false;
         }
 
         if (existsNoFollow(destinationPath)) {
-            *error = cutefish::i18n::format(tr("Duplicate path in archive: {path}"), {{"path", link.relativePath}});
+            *error = properdesktop::i18n::format(tr("Duplicate path in archive: {path}"), {{"path", link.relativePath}});
             return false;
         }
 
         if (::symlink(link.target.c_str(), destinationPath.c_str()) != 0) {
-            *error = cutefish::i18n::format(tr("Could not restore symbolic link: {path}"), {{"path", link.relativePath}});
+            *error = properdesktop::i18n::format(tr("Could not restore symbolic link: {path}"), {{"path", link.relativePath}});
             return false;
         }
     }
@@ -1052,7 +1052,7 @@ bool ArchiveJob::extractVolumes(const std::vector<std::string> &volumes, std::st
         const std::string outputPath = renameUnique(topLevel.front().path().string(), parentPath, itemName,
                                                     itemIsDirectory);
         if (outputPath.empty()) {
-            *error = cutefish::i18n::format(tr("Could not create {path}"), {{"path", parentPath + '/' + itemName}});
+            *error = properdesktop::i18n::format(tr("Could not create {path}"), {{"path", parentPath + '/' + itemName}});
             return false;
         }
         m_outputPath = outputPath;
@@ -1061,7 +1061,7 @@ bool ArchiveJob::extractVolumes(const std::vector<std::string> &volumes, std::st
     }
 
     if (!renameNoReplace(tempPath, m_outputPath)) {
-        *error = cutefish::i18n::format(tr("Could not create {path}"), {{"path", m_outputPath}});
+        *error = properdesktop::i18n::format(tr("Could not create {path}"), {{"path", m_outputPath}});
         return false;
     }
 

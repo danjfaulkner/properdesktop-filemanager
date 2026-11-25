@@ -16,7 +16,7 @@
 #include <cstdlib>
 #include <unistd.h>
 
-using namespace cutefish;
+using namespace properdesktop;
 
 enum class Request {
     Open,
@@ -42,13 +42,13 @@ static bool forward(base::dbus::Connection& bus, Request request, const std::vec
 {
     // Not activatable: a D-Bus started file manager would also open its cwd.
     base::dbus::Proxy daemon(&bus, "org.freedesktop.DBus", "/org/freedesktop/DBus", "org.freedesktop.DBus");
-    const base::dbus::Reply owned = daemon.call("NameHasOwner", std::string("org.cutefish.FileManager"));
+    const base::dbus::Reply owned = daemon.call("NameHasOwner", std::string("org.properdesktop.FileManager"));
     bool hasOwner = false;
     if (owned.isError() || !owned.read(hasOwner) || !hasOwner)
         return false;
 
     base::dbus::Message call =
-            bus.newMethodCall("org.cutefish.FileManager", "/FileManager", "org.cutefish.FileManager",
+            bus.newMethodCall("org.properdesktop.FileManager", "/FileManager", "org.properdesktop.FileManager",
                               request == Request::EmptyTrash    ? "emptyTrash"
                               : request == Request::MoveToTrash ? "moveToTrash"
                                                                 : "openFiles");
@@ -104,8 +104,8 @@ int main(int argc, char** argv)
     }
 
     ui::Application app(argc, argv);
-    app.setApplicationId("cutefish-filemanager");
-    i18n::setDomain("cutefish-filemanager");
+    app.setApplicationId("properdesktop-filemanager");
+    i18n::setDomain("properdesktop-filemanager");
     fm::Application application(app, daemon, dbusActivated);
 
     if (daemon) {

@@ -28,12 +28,12 @@
 
 #include <cmath>
 
-using cutefish::i18n::tr;
+using properdesktop::i18n::tr;
 
 namespace fm {
 
-static constexpr const char* kDisplayService = "org.cutefish.DisplayConfig1";
-static constexpr const char* kDisplayPath = "/org/cutefish/DisplayConfig1";
+static constexpr const char* kDisplayService = "org.properdesktop.DisplayConfig1";
+static constexpr const char* kDisplayPath = "/org/properdesktop/DisplayConfig1";
 
 static std::string desktopPath()
 {

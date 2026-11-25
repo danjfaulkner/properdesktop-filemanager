@@ -6,15 +6,15 @@
 
 #include "base/event_loop.h"
 
-#include "cutefish/files/task.h"
+#include "properdesktop/files/task.h"
 
 #include <algorithm>
 
-using namespace cutefish;
+using namespace properdesktop;
 using base::dbus::Variant;
 using base::dbus::VariantMap;
 
-static constexpr char kInterface[] = "org.cutefish.FileOperations.Task1";
+static constexpr char kInterface[] = "org.properdesktop.FileOperations.Task1";
 
 static VariantMap progressMap(const files::TaskProgress &progress)
 {

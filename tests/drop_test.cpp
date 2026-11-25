@@ -24,7 +24,7 @@
 #include <filesystem>
 #include <sys/stat.h>
 
-using namespace cutefish;
+using namespace properdesktop;
 using fmtest::runUntil;
 using fmtest::TemporaryDir;
 
@@ -200,8 +200,8 @@ TEST(DropTest, DesktopDropTakesTheDefaultOrThePickedAction)
     ASSERT_TRUE(daemon.start(FILEMANAGER_DAEMON));
     auto bus = base::dbus::Connection::open(base::dbus::Connection::Bus::Session, &loop);
     ASSERT_TRUE(bus);
-    const base::dbus::Proxy manager(bus.get(), "org.cutefish.FileOperations", "/org/cutefish/FileOperations",
-                                    "org.cutefish.FileOperations.Manager1");
+    const base::dbus::Proxy manager(bus.get(), "org.properdesktop.FileOperations", "/org/properdesktop/FileOperations",
+                                    "org.properdesktop.FileOperations.Manager1");
     ASSERT_TRUE(runUntil(loop, [&] { return manager.call("CanUndo").value<bool>().has_value(); }));
 
     WindowHost host;

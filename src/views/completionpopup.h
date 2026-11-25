@@ -12,7 +12,7 @@
 #include <memory>
 #include <string>
 
-namespace cutefish::ui {
+namespace properdesktop::ui {
 class TextField;
 class Window;
 }

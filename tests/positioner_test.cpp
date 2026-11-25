@@ -17,7 +17,7 @@
 #include <filesystem>
 #include <set>
 
-using namespace cutefish;
+using namespace properdesktop;
 using fm::FolderModel;
 using fm::Positioner;
 using fmtest::runUntil;
@@ -297,8 +297,8 @@ TEST(PositionerTest, RenameKeepsTheCell)
     ASSERT_TRUE(daemon.start(FILEMANAGER_DAEMON));
     auto bus = base::dbus::Connection::open(base::dbus::Connection::Bus::Session, &s_app->loop());
     ASSERT_TRUE(bus);
-    const base::dbus::Proxy manager(bus.get(), "org.cutefish.FileOperations", "/org/cutefish/FileOperations",
-                                    "org.cutefish.FileOperations.Manager1");
+    const base::dbus::Proxy manager(bus.get(), "org.properdesktop.FileOperations", "/org/properdesktop/FileOperations",
+                                    "org.properdesktop.FileOperations.Manager1");
     ASSERT_TRUE(runUntil(s_app->loop(), [&] { return manager.call("CanUndo").value<bool>().has_value(); }));
 
     TemporaryDir directory;

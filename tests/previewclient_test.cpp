@@ -13,12 +13,12 @@
 
 #include <gtest/gtest.h>
 
-using namespace cutefish;
+using namespace properdesktop;
 using fmtest::runUntil;
 
 namespace {
 
-// org.cutefish.FilePreview as the views see it, which keeps what they send.
+// org.properdesktop.FilePreview as the views see it, which keeps what they send.
 class PreviewService
 {
 public:
@@ -29,7 +29,7 @@ public:
     };
 
     explicit PreviewService(base::dbus::Connection* bus)
-        : m_object(bus, "/org/cutefish/FilePreview", "org.cutefish.FilePreview")
+        : m_object(bus, "/org/properdesktop/FilePreview", "org.properdesktop.FilePreview")
     {
         for (const char* method : {"Toggle", "Activate", "Update"}) {
             m_object.addMethod(method, "ss", "", [this, method](base::dbus::MethodCall& call) {
@@ -45,7 +45,7 @@ public:
         m_object.addSignal("Navigate", "sii");
         m_object.addSignal("RestoreFocus", "s");
         m_object.publish();
-        bus->requestName("org.cutefish.FilePreview");
+        bus->requestName("org.properdesktop.FilePreview");
     }
 
     void setVisible(bool visible)

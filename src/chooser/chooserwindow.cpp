@@ -37,8 +37,8 @@
 namespace fm {
 
 using ui::rounding::centeredStart;
-using cutefish::i18n::format;
-using cutefish::i18n::tr;
+using properdesktop::i18n::format;
+using properdesktop::i18n::tr;
 
 static constexpr double kWidth = 860;
 static constexpr double kHeight = 520;

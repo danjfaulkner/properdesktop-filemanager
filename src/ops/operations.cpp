@@ -14,12 +14,12 @@ namespace fm {
 
 using base::dbus::Variant;
 using base::dbus::VariantMap;
-using cutefish::i18n::tr;
+using properdesktop::i18n::tr;
 
-static constexpr char kService[] = "org.cutefish.FileOperations";
-static constexpr char kManagerPath[] = "/org/cutefish/FileOperations";
-static constexpr char kManagerInterface[] = "org.cutefish.FileOperations.Manager1";
-static constexpr char kTaskInterface[] = "org.cutefish.FileOperations.Task1";
+static constexpr char kService[] = "org.properdesktop.FileOperations";
+static constexpr char kManagerPath[] = "/org/properdesktop/FileOperations";
+static constexpr char kManagerInterface[] = "org.properdesktop.FileOperations.Manager1";
+static constexpr char kTaskInterface[] = "org.properdesktop.FileOperations.Task1";
 
 template<typename T>
 static T value(const VariantMap& map, const std::string& key, T fallback = T())

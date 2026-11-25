@@ -7,7 +7,7 @@
 #include "base/paths.h"
 #include "base/thread_pool.h"
 
-#include "cutefish/files/thumbnails/thumbnail_cache.h"
+#include "properdesktop/files/thumbnails/thumbnail_cache.h"
 
 #include <list>
 #include <map>

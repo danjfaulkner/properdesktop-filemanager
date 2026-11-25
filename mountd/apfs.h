@@ -176,6 +176,6 @@ private:
     Tree m_containerMap;
     Tree m_volumeMap;
     Tree m_files;
-    cutefish::base::LruCache<uint64_t, Node> m_nodes {8 * 1024 * 1024};
-    cutefish::base::LruCache<uint64_t, Directory> m_directories {256 * 1024};
+    properdesktop::base::LruCache<uint64_t, Node> m_nodes {8 * 1024 * 1024};
+    properdesktop::base::LruCache<uint64_t, Directory> m_directories {256 * 1024};
 };

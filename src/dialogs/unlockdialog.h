@@ -12,7 +12,7 @@
 #include <string>
 #include <vector>
 
-namespace cutefish::ui {
+namespace properdesktop::ui {
 class DialogWindow;
 class Window;
 }

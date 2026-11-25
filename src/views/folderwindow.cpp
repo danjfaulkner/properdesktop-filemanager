@@ -45,8 +45,8 @@
 namespace fm {
 
 using ui::rounding::centeredStart;
-using cutefish::i18n::format;
-using cutefish::i18n::tr;
+using properdesktop::i18n::format;
+using properdesktop::i18n::tr;
 
 static constexpr double kSmallSpacing = 6;
 static constexpr double kLargeSpacing = 12;
@@ -65,7 +65,7 @@ static constexpr double kNewTabButtonSize = 28;
 // From the track's end and from the window's edge to the button.
 static constexpr double kNewTabStartGap = 2;
 static constexpr double kNewTabEndMargin = 10;
-static constexpr const char* kTabMimeType = "application/x-cutefish-filemanager-tab";
+static constexpr const char* kTabMimeType = "application/x-properdesktop-filemanager-tab";
 
 // Where a search looks, home or the folder it started from.
 class SearchScopeBar : public ui::View

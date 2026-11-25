@@ -18,7 +18,7 @@
 namespace fm {
 
 using ui::rounding::centeredStart;
-using cutefish::i18n::tr;
+using properdesktop::i18n::tr;
 
 static constexpr double kWidth = 400 + 12 * 2;
 static constexpr double kPadding = 16;

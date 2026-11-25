@@ -22,9 +22,9 @@
 #include <thread>
 #include <unistd.h>
 
-using namespace cutefish::base;
-using cutefish::i18n::format;
-using cutefish::i18n::tr;
+using namespace properdesktop::base;
+using properdesktop::i18n::format;
+using properdesktop::i18n::tr;
 
 static std::unique_ptr<Backend> createBackend(const RemoteUrl &url)
 {
@@ -117,7 +117,7 @@ static bool optionBool(const dbus::VariantMap &options, const std::string &key)
 
 MountService::MountService(dbus::Connection *bus)
     : m_bus(bus)
-    , m_object(bus, "/org/cutefish/Mounts1", "org.cutefish.Mounts1")
+    , m_object(bus, "/org/properdesktop/Mounts1", "org.properdesktop.Mounts1")
     , m_root(paths::runtimeDirectory() + "/mounts")
 {
     // Mounts a crashed run left behind answer nothing; detach them.
@@ -457,7 +457,7 @@ void MountService::unmount(dbus::MethodCall &call)
 
     std::string message;
     if (!entry->mount->stop(false, &message)) {
-        call.replyError("org.cutefish.Mounts1.Error.Busy", message);
+        call.replyError("org.properdesktop.Mounts1.Error.Busy", message);
         return;
     }
     call.reply();

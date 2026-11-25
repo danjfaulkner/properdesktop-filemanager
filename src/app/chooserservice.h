@@ -17,7 +17,7 @@ namespace fm {
 class ChooserWindow;
 class FileChooser;
 
-// org.cutefish.FileChooser: xdg-desktop-portal-cutefish's file dialogs,
+// org.properdesktop.FileChooser: xdg-desktop-portal-properdesktop's file dialogs,
 // served by the session daemon. Open takes the request as a JSON object and
 // replies with the result once the dialog is answered or closed.
 class ChooserService

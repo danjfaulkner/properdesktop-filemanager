@@ -22,7 +22,7 @@ static constexpr int kMeta = 0x10000000;
 
 int toWireKey(uint32_t keysym)
 {
-    using namespace cutefish::ui;
+    using namespace properdesktop::ui;
     switch (keysym) {
     case key::Escape:
         return kEscape;
@@ -47,7 +47,7 @@ int toWireKey(uint32_t keysym)
 
 uint32_t fromWireKey(int key)
 {
-    using namespace cutefish::ui;
+    using namespace properdesktop::ui;
     switch (key) {
     case kEscape:
         return key::Escape;
@@ -69,14 +69,14 @@ uint32_t fromWireKey(int key)
 
 int toWireModifiers(uint32_t modifiers)
 {
-    using namespace cutefish::ui;
+    using namespace properdesktop::ui;
     return (modifiers & ShiftModifier ? kShift : 0) | (modifiers & ControlModifier ? kControl : 0)
             | (modifiers & AltModifier ? kAlt : 0) | (modifiers & SuperModifier ? kMeta : 0);
 }
 
 uint32_t fromWireModifiers(int modifiers)
 {
-    using namespace cutefish::ui;
+    using namespace properdesktop::ui;
     return (modifiers & kShift ? ShiftModifier : 0) | (modifiers & kControl ? ControlModifier : 0)
             | (modifiers & kAlt ? AltModifier : 0) | (modifiers & kMeta ? SuperModifier : 0);
 }

@@ -42,8 +42,8 @@ public:
     void arrive(const std::string &sysPath, const Device &device);
     void leave(const std::string &sysPath);
 
-    cutefish::base::Signal<std::string> added;
-    cutefish::base::Signal<std::string> removed;
+    properdesktop::base::Signal<std::string> added;
+    properdesktop::base::Signal<std::string> removed;
 
 private:
     void handle(udev_device *device, bool present);
@@ -54,5 +54,5 @@ private:
     int m_watch = 0;
     // By sysfs path, which a removal names.
     std::map<std::string, Device> m_devices;
-    std::map<std::string, std::unique_ptr<cutefish::base::Timer>> m_leaving;
+    std::map<std::string, std::unique_ptr<properdesktop::base::Timer>> m_leaving;
 };

@@ -27,7 +27,7 @@
 #include <filesystem>
 #include <map>
 
-using namespace cutefish;
+using namespace properdesktop;
 using fm::FolderModel;
 using fmtest::runUntil;
 using fmtest::TemporaryDir;
@@ -450,7 +450,7 @@ TEST(FolderModelTest, ContextMenuActionsFollowTheSelection)
 static std::vector<std::string> cutUrls()
 {
     const auto types = ui::Clipboard::mimeTypes();
-    if (std::find(types.begin(), types.end(), "application/x-cutefish-cutselection") == types.end())
+    if (std::find(types.begin(), types.end(), "application/x-properdesktop-cutselection") == types.end())
         return {};
     std::vector<std::string> urls;
     ui::Clipboard::requestData("text/uri-list", [&](std::optional<std::string> data) {
@@ -543,8 +543,8 @@ TEST(FolderModelTest, CutFollowsWhatTheMoveLeft)
     ASSERT_TRUE(daemon.start(FILEMANAGER_DAEMON));
     auto bus = base::dbus::Connection::open(base::dbus::Connection::Bus::Session, &loop());
     ASSERT_TRUE(bus);
-    const base::dbus::Proxy manager(bus.get(), "org.cutefish.FileOperations", "/org/cutefish/FileOperations",
-                                    "org.cutefish.FileOperations.Manager1");
+    const base::dbus::Proxy manager(bus.get(), "org.properdesktop.FileOperations", "/org/properdesktop/FileOperations",
+                                    "org.properdesktop.FileOperations.Manager1");
     ASSERT_TRUE(runUntil(loop(), [&] { return manager.call("CanUndo").value<bool>().has_value(); }));
 
     TemporaryDir from;
@@ -593,8 +593,8 @@ TEST(FolderModelTest, RenameKeepsTheSelection)
     ASSERT_TRUE(daemon.start(FILEMANAGER_DAEMON));
     auto bus = base::dbus::Connection::open(base::dbus::Connection::Bus::Session, &loop());
     ASSERT_TRUE(bus);
-    const base::dbus::Proxy manager(bus.get(), "org.cutefish.FileOperations", "/org/cutefish/FileOperations",
-                                    "org.cutefish.FileOperations.Manager1");
+    const base::dbus::Proxy manager(bus.get(), "org.properdesktop.FileOperations", "/org/properdesktop/FileOperations",
+                                    "org.properdesktop.FileOperations.Manager1");
     ASSERT_TRUE(runUntil(loop(), [&] { return manager.call("CanUndo").value<bool>().has_value(); }));
 
     TemporaryDir directory;
@@ -622,8 +622,8 @@ TEST(FolderModelTest, DroppedFilesAreSelected)
     ASSERT_TRUE(daemon.start(FILEMANAGER_DAEMON));
     auto bus = base::dbus::Connection::open(base::dbus::Connection::Bus::Session, &loop());
     ASSERT_TRUE(bus);
-    const base::dbus::Proxy manager(bus.get(), "org.cutefish.FileOperations", "/org/cutefish/FileOperations",
-                                    "org.cutefish.FileOperations.Manager1");
+    const base::dbus::Proxy manager(bus.get(), "org.properdesktop.FileOperations", "/org/properdesktop/FileOperations",
+                                    "org.properdesktop.FileOperations.Manager1");
     ASSERT_TRUE(runUntil(loop(), [&] { return manager.call("CanUndo").value<bool>().has_value(); }));
 
     TemporaryDir from;
@@ -652,8 +652,8 @@ TEST(FolderModelTest, ExtractsArchiveByPathAndSelectsResult)
     ASSERT_TRUE(daemon.start(FILEMANAGER_DAEMON));
     auto bus = base::dbus::Connection::open(base::dbus::Connection::Bus::Session, &loop());
     ASSERT_TRUE(bus);
-    const base::dbus::Proxy manager(bus.get(), "org.cutefish.FileOperations", "/org/cutefish/FileOperations",
-                                    "org.cutefish.FileOperations.Manager1");
+    const base::dbus::Proxy manager(bus.get(), "org.properdesktop.FileOperations", "/org/properdesktop/FileOperations",
+                                    "org.properdesktop.FileOperations.Manager1");
     ASSERT_TRUE(runUntil(loop(), [&] { return manager.call("CanUndo").value<bool>().has_value(); }));
 
     TemporaryDir directory;
@@ -686,8 +686,8 @@ TEST(FolderModelTest, ExtractsSplitAndEncryptedArchives)
     ASSERT_TRUE(daemon.start(FILEMANAGER_DAEMON));
     auto bus = base::dbus::Connection::open(base::dbus::Connection::Bus::Session, &loop());
     ASSERT_TRUE(bus);
-    const base::dbus::Proxy manager(bus.get(), "org.cutefish.FileOperations", "/org/cutefish/FileOperations",
-                                    "org.cutefish.FileOperations.Manager1");
+    const base::dbus::Proxy manager(bus.get(), "org.properdesktop.FileOperations", "/org/properdesktop/FileOperations",
+                                    "org.properdesktop.FileOperations.Manager1");
     ASSERT_TRUE(runUntil(loop(), [&] { return manager.call("CanUndo").value<bool>().has_value(); }));
 
     TemporaryDir directory;

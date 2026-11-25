@@ -14,13 +14,13 @@
 #include "ui/keys.h"
 #include "ui/window.h"
 
-using cutefish::i18n::format;
-using cutefish::i18n::tr;
+using properdesktop::i18n::format;
+using properdesktop::i18n::tr;
 
 namespace fm {
 
-static constexpr const char* kService = "org.cutefish.FilePreview";
-static constexpr const char* kPath = "/org/cutefish/FilePreview";
+static constexpr const char* kService = "org.properdesktop.FilePreview";
+static constexpr const char* kPath = "/org/properdesktop/FilePreview";
 
 PreviewClient::PreviewClient(base::dbus::Connection* bus)
     : m_id(base::Uuid::generate().toString())

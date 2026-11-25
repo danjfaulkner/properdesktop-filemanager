@@ -69,6 +69,6 @@ private:
     uint64_t m_size = 0;
     // Sorted by start, covering the disk without gaps.
     std::vector<Chunk> m_chunks;
-    cutefish::base::LruCache<size_t, std::vector<uint8_t>> m_cache {16 * 1024 * 1024};
+    properdesktop::base::LruCache<size_t, std::vector<uint8_t>> m_cache {16 * 1024 * 1024};
     std::vector<uint8_t> m_lzfseScratch;
 };

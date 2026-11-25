@@ -7,7 +7,7 @@
 
 namespace fm {
 
-// ~/.config/cutefish/filemanager.conf, the file manager's settings, which
+// ~/.config/properdesktop/filemanager.conf, the file manager's settings, which
 // this process alone writes.
 std::string settingsFile();
 // Another file for every setting, for tests and tools; before first use.

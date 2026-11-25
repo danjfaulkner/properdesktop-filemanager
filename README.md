@@ -1,13 +1,13 @@
 # File Manager
 
-Cutefish File Manager, simple to use, beautiful, and retain the classic PC interactive design.
+Proper Desktop File Manager, simple to use, beautiful, and retain the classic PC interactive design.
 
 <img src="screenshots/filemanager.png" alt="File Manager" width="945">
 
 ## Dependencies
 
-File Manager is built on [cutefish-toolkit](https://github.com/cutefishos/cutefish-toolkit) and
-the files library of [cutefish-framework](https://github.com/cutefishos/cutefish-framework);
+File Manager is built on [properdesktop-toolkit](https://github.com/danjfaulkner/properdesktop-toolkit) and
+the files library of [properdesktop-framework](https://github.com/danjfaulkner/properdesktop-framework);
 install them first. The mount service needs FUSE, libssh, libsmbclient, libmtp and
 libudev, and zlib, bzip2, liblzma and LZFSE for disk images; archives need libarchive
 and libzip. GoogleTest for the tests.

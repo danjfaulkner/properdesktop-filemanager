@@ -15,7 +15,7 @@
 #include <sys/socket.h>
 #include <unistd.h>
 
-using namespace cutefish;
+using namespace properdesktop;
 
 static std::string target(const std::string& link)
 {

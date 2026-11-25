@@ -8,12 +8,12 @@
 
 #include <map>
 
-using namespace cutefish::base;
+using namespace properdesktop::base;
 
 static const char s_service[] = "org.freedesktop.secrets";
 static const char s_servicePath[] = "/org/freedesktop/secrets";
 static const char s_serviceInterface[] = "org.freedesktop.Secret.Service";
-static const char s_schema[] = "org.cutefish.ServerPassword";
+static const char s_schema[] = "org.properdesktop.ServerPassword";
 static constexpr std::chrono::seconds kTimeout(5);
 
 using Attributes = std::map<std::string, std::string>;

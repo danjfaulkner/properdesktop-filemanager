@@ -11,12 +11,12 @@
 
 #include <cstdio>
 
-using namespace cutefish;
+using namespace properdesktop;
 
 int main()
 {
     base::Locale::setProcessLocale();
-    i18n::setDomain("cutefish-filemanager");
+    i18n::setDomain("properdesktop-filemanager");
     base::EventLoop loop;
     base::dbus::Connection *bus = base::dbus::Connection::session(&loop);
     if (!bus) {
@@ -26,8 +26,8 @@ int main()
 
     base::SessionLanguage language(bus);
     FileOperationsService service(bus);
-    if (!service.publish() || !bus->requestName("org.cutefish.FileOperations")) {
-        std::fprintf(stderr, "Cannot own org.cutefish.FileOperations.\n");
+    if (!service.publish() || !bus->requestName("org.properdesktop.FileOperations")) {
+        std::fprintf(stderr, "Cannot own org.properdesktop.FileOperations.\n");
         return 1;
     }
 

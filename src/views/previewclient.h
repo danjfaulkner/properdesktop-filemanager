@@ -14,7 +14,7 @@
 #include <string>
 #include <vector>
 
-namespace cutefish::ui {
+namespace properdesktop::ui {
 struct KeyEvent;
 }
 
@@ -24,7 +24,7 @@ class FolderModel;
 class FolderView;
 
 // A file view's side of Quick Look, which the
-// org.cutefish.FilePreview service shows for the selection.
+// org.properdesktop.FilePreview service shows for the selection.
 class PreviewClient
 {
 public:

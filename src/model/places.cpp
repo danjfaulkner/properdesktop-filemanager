@@ -15,8 +15,8 @@
 #include "base/url.h"
 #include "ui/drag.h"
 
-#include "cutefish/files/file_item.h"
-#include "cutefish/files/volume_manager.h"
+#include "properdesktop/files/file_item.h"
+#include "properdesktop/files/volume_manager.h"
 
 #include <algorithm>
 #include <set>
@@ -27,10 +27,10 @@ namespace fm {
 
 using base::dbus::Variant;
 using base::dbus::VariantMap;
-using cutefish::base::paths::UserDirectory;
-using cutefish::i18n::format;
-using cutefish::i18n::tr;
-using cutefish::i18n::trNoop;
+using properdesktop::base::paths::UserDirectory;
+using properdesktop::i18n::format;
+using properdesktop::i18n::tr;
+using properdesktop::i18n::trNoop;
 
 static constexpr const char* kFavorites = trNoop("Favorites");
 static constexpr const char* kLocations = trNoop("Locations");

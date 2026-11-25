@@ -15,7 +15,7 @@ namespace fm::thumbnails {
 
 // Whether files of the type get a thumbnail instead of their type's icon.
 bool canThumbnail(const std::string& mimeType);
-// Under a mount of cutefish-mountd: a phone's or a server's file, which a
+// Under a mount of properdesktop-mountd: a phone's or a server's file, which a
 // thumbnail would read whole.
 bool isOnMount(const std::string& path);
 

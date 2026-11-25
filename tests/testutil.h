@@ -16,7 +16,7 @@
 namespace fmtest {
 
 // Runs the loop until the condition holds or the time is up; the condition's last answer.
-inline bool runUntil(cutefish::base::EventLoop& loop, const std::function<bool()>& condition,
+inline bool runUntil(properdesktop::base::EventLoop& loop, const std::function<bool()>& condition,
                      int milliseconds = 5000)
 {
     const auto deadline = std::chrono::steady_clock::now() + std::chrono::milliseconds(milliseconds);
@@ -31,7 +31,7 @@ inline bool runUntil(cutefish::base::EventLoop& loop, const std::function<bool()
 }
 
 // Runs the loop for a while, whatever happens.
-inline void runFor(cutefish::base::EventLoop& loop, int milliseconds)
+inline void runFor(properdesktop::base::EventLoop& loop, int milliseconds)
 {
     runUntil(loop, [] { return false; }, milliseconds);
 }

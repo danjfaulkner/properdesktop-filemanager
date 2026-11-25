@@ -15,7 +15,7 @@
 #include <unicode/normalizer2.h>
 #include <unicode/unistr.h>
 
-using cutefish::i18n::tr;
+using properdesktop::i18n::tr;
 
 static constexpr uint32_t kRootParentId = 1;
 static constexpr uint32_t kRootFolderId = 2;

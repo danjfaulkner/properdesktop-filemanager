@@ -14,7 +14,7 @@
 #include <linux/fs.h>
 #include <sys/time.h>
 
-using cutefish::i18n::tr;
+using properdesktop::i18n::tr;
 
 // OpenSSH drops the session on requests much larger than the 32 KiB the protocol draft
 // promises to accept.

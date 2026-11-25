@@ -11,21 +11,21 @@
 #include <string>
 #include <vector>
 
-namespace cutefish::files {
+namespace properdesktop::files {
 class Task;
 struct TaskRequest;
 }
 
 class ArchiveJob;
 
-// One task on the bus, org.cutefish.FileOperations.Task1: a file operation
+// One task on the bus, org.properdesktop.FileOperations.Task1: a file operation
 // of the files library, or a compression or extraction.
 class DaemonTask
 {
 public:
-    DaemonTask(cutefish::base::dbus::Connection *bus, std::string objectPath, cutefish::files::Task *task);
+    DaemonTask(properdesktop::base::dbus::Connection *bus, std::string objectPath, properdesktop::files::Task *task);
     // operation 0 compresses, 1 extracts.
-    DaemonTask(cutefish::base::dbus::Connection *bus, std::string objectPath, int operation,
+    DaemonTask(properdesktop::base::dbus::Connection *bus, std::string objectPath, int operation,
                std::vector<std::string> sources, std::string outputPath);
     ~DaemonTask();
 
@@ -51,23 +51,23 @@ public:
 
     void cancel();
 
-    cutefish::base::Signal<> finished;
+    properdesktop::base::Signal<> finished;
 
 private:
     void initialize();
     void addMembers();
-    void changed(const cutefish::base::dbus::VariantMap &update);
+    void changed(const properdesktop::base::dbus::VariantMap &update);
     void passwordSettled();
-    cutefish::base::dbus::VariantMap snapshot();
+    properdesktop::base::dbus::VariantMap snapshot();
 
     std::string m_objectPath;
-    cutefish::files::Task *m_task = nullptr;
+    properdesktop::files::Task *m_task = nullptr;
     std::unique_ptr<ArchiveJob> m_archive;
-    cutefish::base::dbus::Object m_object;
-    cutefish::base::dbus::VariantMap m_snapshot;
+    properdesktop::base::dbus::Object m_object;
+    properdesktop::base::dbus::VariantMap m_snapshot;
     bool m_finished = false;
     bool m_outcomeRead = false;
     std::function<void()> m_outcomeReadCallback;
-    std::vector<cutefish::base::Subscription> m_subscriptions;
+    std::vector<properdesktop::base::Subscription> m_subscriptions;
     std::shared_ptr<bool> m_alive = std::make_shared<bool>(true);
 };

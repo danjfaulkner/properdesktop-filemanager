@@ -14,7 +14,7 @@
 
 #include <filesystem>
 
-using namespace cutefish;
+using namespace properdesktop;
 using base::json::Value;
 using fm::FileChooser;
 using fmtest::runUntil;

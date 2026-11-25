@@ -14,8 +14,8 @@
 #include <filesystem>
 #include <unistd.h>
 
-using cutefish::i18n::format;
-using cutefish::i18n::tr;
+using properdesktop::i18n::format;
+using properdesktop::i18n::tr;
 
 static FuseMount *current()
 {
@@ -262,7 +262,7 @@ FuseMount::~FuseMount()
 // Commas separate mount options, so the source shown in the mount table escapes them.
 static std::string optionValue(const std::string &value)
 {
-    using cutefish::base::strings::replaceAll;
+    using properdesktop::base::strings::replaceAll;
     return replaceAll(replaceAll(value, "\\", "\\\\"), ",", "\\,");
 }
 
@@ -275,10 +275,10 @@ bool FuseMount::start(std::string *message)
         return false;
     }
 
-    std::string options = "fsname=" + optionValue(m_source) + ",subtype=cutefish-mountd";
+    std::string options = "fsname=" + optionValue(m_source) + ",subtype=properdesktop-mountd";
     if (m_backend->readOnly())
         options += ",ro";
-    const char *argv[] = {"cutefish-mountd", "-o", options.c_str()};
+    const char *argv[] = {"properdesktop-mountd", "-o", options.c_str()};
     struct fuse_args args = FUSE_ARGS_INIT(3, const_cast<char **>(argv));
 
     m_fuse = fuse_new(&args, operations(), sizeof(struct fuse_operations), this);
@@ -312,7 +312,7 @@ bool FuseMount::stop(bool force, std::string *message)
         arguments.push_back("-z");
     arguments.push_back(m_mountPoint);
 
-    cutefish::base::Process fusermount;
+    properdesktop::base::Process fusermount;
     int exitCode = -1;
     fusermount.onFinished = [&exitCode](int code, bool crashed) {
         exitCode = crashed ? -1 : code;
@@ -320,7 +320,7 @@ bool FuseMount::stop(bool force, std::string *message)
     if (!fusermount.start("fusermount3", arguments) || !fusermount.waitForFinished(std::chrono::seconds(10))
         || exitCode != 0) {
         if (message)
-            *message = std::string(cutefish::base::strings::trimmed(fusermount.standardError()));
+            *message = std::string(properdesktop::base::strings::trimmed(fusermount.standardError()));
         return false;
     }
 

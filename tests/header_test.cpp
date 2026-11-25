@@ -21,7 +21,7 @@
 #include <filesystem>
 #include <memory>
 
-using namespace cutefish;
+using namespace properdesktop;
 using fmtest::runUntil;
 
 extern ui::Application* s_app;

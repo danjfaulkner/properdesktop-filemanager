@@ -14,7 +14,7 @@
 
 namespace fm {
 
-// The phones, servers and disk images cutefish-mountd serves, shared by every view of the process.
+// The phones, servers and disk images properdesktop-mountd serves, shared by every view of the process.
 class MountsClient
 {
 public:

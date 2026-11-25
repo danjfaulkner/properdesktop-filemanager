@@ -1,8 +1,8 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: cutefish-filemanager\n"
-"Report-Msgid-Bugs-To: https://github.com/cutefishos\n"
+"Project-Id-Version: properdesktop-filemanager\n"
+"Report-Msgid-Bugs-To: https://github.com/danjfaulkner\n"
 "POT-Creation-Date: 2026-11-22 18:34+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
@@ -1126,7 +1126,7 @@ msgstr ""
 msgid "Empty"
 msgstr ""
 
-#: src/views/folderwindow.cpp data/cutefish-filemanager.desktop
+#: src/views/folderwindow.cpp data/properdesktop-filemanager.desktop
 msgid "Files"
 msgstr ""
 
@@ -1305,10 +1305,10 @@ msgstr ""
 msgid "Device operation failed"
 msgstr ""
 
-#: data/cutefish-filemanager.desktop
+#: data/properdesktop-filemanager.desktop
 msgid "File Manager"
 msgstr ""
 
-#: data/cutefish-filemanager.desktop
+#: data/properdesktop-filemanager.desktop
 msgid "Browse and manage your files"
 msgstr ""

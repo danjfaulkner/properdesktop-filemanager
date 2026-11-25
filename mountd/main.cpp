@@ -20,7 +20,7 @@
 #include <sys/file.h>
 #include <unistd.h>
 
-using namespace cutefish::base;
+using namespace properdesktop::base;
 
 static int s_quitFd = -1;
 
@@ -33,10 +33,10 @@ static void requestQuit(int)
 int main()
 {
     Locale::setProcessLocale();
-    cutefish::i18n::setDomain("cutefish-filemanager");
+    properdesktop::i18n::setDomain("properdesktop-filemanager");
     // One instance per user: a second one, started on a private bus by a test, would
     // take the first one's mounts for leftovers and detach them.
-    const std::string lockPath = paths::runtimeDirectory() + "/cutefish-mountd.lock";
+    const std::string lockPath = paths::runtimeDirectory() + "/properdesktop-mountd.lock";
     const int lock = ::open(lockPath.c_str(), O_RDWR | O_CREAT | O_CLOEXEC, 0600);
     if (lock < 0 || ::flock(lock, LOCK_EX | LOCK_NB) < 0)
         return 1;
@@ -51,7 +51,7 @@ int main()
 
     SessionLanguage language(bus);
     MountService service(bus);
-    if (!service.publish() || !bus->requestName("org.cutefish.Mounts1"))
+    if (!service.publish() || !bus->requestName("org.properdesktop.Mounts1"))
         return 1;
 
     // The session's end detaches every mount, so none is left answering nothing.

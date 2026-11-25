@@ -17,11 +17,11 @@
 
 class MtpMonitor;
 
-// org.cutefish.Mounts1 at /org/cutefish/Mounts1.
+// org.properdesktop.Mounts1 at /org/properdesktop/Mounts1.
 class MountService
 {
 public:
-    explicit MountService(cutefish::base::dbus::Connection *bus);
+    explicit MountService(properdesktop::base::dbus::Connection *bus);
     ~MountService();
 
     MountService(const MountService &) = delete;
@@ -49,37 +49,37 @@ private:
         std::unique_ptr<FuseMount> mount;
     };
 
-    std::vector<cutefish::base::dbus::VariantMap> mounts() const;
+    std::vector<properdesktop::base::dbus::VariantMap> mounts() const;
     // location is a URL (sftp://, smb://), the id of a device from Mounts() or the path of
     // a disk image. Answers (status, details): "mounted" with path; "password" with user,
     // domain, needsDomain, anonymousAllowed and retry; "hostkey" with fingerprint and
     // changed; "failed" with message. options carry the answers: user, domain, password,
     // anonymous, remember, hostKey; for a disk image also mountPoint (an absolute path to
     // mount at) and hidden.
-    void mount(cutefish::base::dbus::MethodCall &call);
+    void mount(properdesktop::base::dbus::MethodCall &call);
     // id is an entry's id or its mount point.
-    void unmount(cutefish::base::dbus::MethodCall &call);
+    void unmount(properdesktop::base::dbus::MethodCall &call);
     void mountsChanged();
 
     Entry *find(const std::string &id);
-    cutefish::base::dbus::VariantMap describe(const Entry &entry) const;
+    properdesktop::base::dbus::VariantMap describe(const Entry &entry) const;
     std::string mountPointFor(const std::string &name) const;
     void finished(FuseMount *mount);
     void addDevice(const std::string &id);
     void removeDevice(const std::string &id);
 
-    cutefish::base::dbus::Connection *m_bus;
-    cutefish::base::dbus::Object m_object;
+    properdesktop::base::dbus::Connection *m_bus;
+    properdesktop::base::dbus::Object m_object;
     std::string m_root;
     std::vector<std::unique_ptr<Entry>> m_entries;
     std::set<std::string> m_pending;
     // Mount calls waiting for their connection, answered later.
-    std::map<int, cutefish::base::dbus::MethodCall> m_calls;
+    std::map<int, properdesktop::base::dbus::MethodCall> m_calls;
     int m_nextCall = 1;
     // Mounts of devices pulled out, kept until their sessions end.
     std::vector<std::unique_ptr<FuseMount>> m_retiring;
     std::unique_ptr<MtpMonitor> m_monitor;
-    cutefish::base::Subscription m_added;
-    cutefish::base::Subscription m_removed;
+    properdesktop::base::Subscription m_added;
+    properdesktop::base::Subscription m_removed;
     std::shared_ptr<bool> m_alive = std::make_shared<bool>(true);
 };

@@ -11,9 +11,9 @@
 #include <sys/stat.h>
 #include <vector>
 
-using cutefish::base::paths::UserDirectory;
-using cutefish::i18n::tr;
-using cutefish::i18n::trNoop;
+using properdesktop::base::paths::UserDirectory;
+using properdesktop::i18n::tr;
+using properdesktop::i18n::trNoop;
 
 namespace fm {
 
@@ -30,7 +30,7 @@ struct StandardFolder
 static const std::map<std::string, StandardFolder>& standardFolders()
 {
     static const std::map<std::string, StandardFolder> folders = [] {
-        using cutefish::base::paths::userDirectory;
+        using properdesktop::base::paths::userDirectory;
         const std::vector<std::pair<std::string, StandardFolder>> list = {
             {homePath(), {trNoop("Home"), "folder-home"}},
             {userDirectory(UserDirectory::Desktop), {trNoop("Desktop"), "folder-desktop"}},
@@ -154,7 +154,7 @@ std::string parentPath(const std::string& path)
 
 std::string homePath()
 {
-    static const std::string home = cleanPath(cutefish::base::paths::home());
+    static const std::string home = cleanPath(properdesktop::base::paths::home());
     return home;
 }
 

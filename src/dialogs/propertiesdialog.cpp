@@ -16,9 +16,9 @@
 #include <dirent.h>
 #include <sys/stat.h>
 
-using cutefish::i18n::tr;
-using cutefish::i18n::trn;
-using cutefish::i18n::trNoop;
+using properdesktop::i18n::tr;
+using properdesktop::i18n::trn;
+using properdesktop::i18n::trNoop;
 
 namespace fm {
 

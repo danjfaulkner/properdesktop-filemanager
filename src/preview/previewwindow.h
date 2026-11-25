@@ -15,7 +15,7 @@
 #include <optional>
 #include <vector>
 
-namespace cutefish::ui {
+namespace properdesktop::ui {
 class ImageView;
 class Window;
 }

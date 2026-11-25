@@ -10,7 +10,7 @@
 #include <cstdint>
 #include <memory>
 
-namespace cutefish::ui {
+namespace properdesktop::ui {
 class Window;
 }
 

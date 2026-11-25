@@ -10,10 +10,10 @@ target_compile_definitions(mountd-tests PRIVATE FIXTURE_DIR="${CMAKE_CURRENT_SOU
 gtest_discover_tests(mountd-tests)
 
 add_executable(fileoperationsdaemon-tests fileoperationsdaemon_test.cpp)
-target_link_libraries(fileoperationsdaemon-tests PRIVATE Cutefish::ToolkitBase PkgConfig::LibArchive GTest::gtest_main)
+target_link_libraries(fileoperationsdaemon-tests PRIVATE ProperDesktop::ToolkitBase PkgConfig::LibArchive GTest::gtest_main)
 target_compile_definitions(fileoperationsdaemon-tests PRIVATE
-    FILEMANAGER_DAEMON="$<TARGET_FILE:cutefish-filemanager-daemon>")
-add_dependencies(fileoperationsdaemon-tests cutefish-filemanager-daemon)
+    FILEMANAGER_DAEMON="$<TARGET_FILE:properdesktop-filemanager-daemon>")
+add_dependencies(fileoperationsdaemon-tests properdesktop-filemanager-daemon)
 find_program(DBUS_RUN_SESSION_EXECUTABLE dbus-run-session REQUIRED)
 # A bus without service directories, so the installed daemon cannot be
 # activated before the build tree's owns the name.
@@ -31,8 +31,8 @@ add_executable(filemanager-tests testmain.cpp chooser_test.cpp foldermodel_test.
 pkg_check_modules(FilemanagerTestSystemd REQUIRED IMPORTED_TARGET libsystemd)
 target_link_libraries(filemanager-tests PRIVATE fm-ui GTest::gtest PkgConfig::FilemanagerTestSystemd PkgConfig::LibArchive)
 target_compile_definitions(filemanager-tests PRIVATE
-    FILEMANAGER_DAEMON="$<TARGET_FILE:cutefish-filemanager-daemon>")
-add_dependencies(filemanager-tests cutefish-filemanager-daemon)
+    FILEMANAGER_DAEMON="$<TARGET_FILE:properdesktop-filemanager-daemon>")
+add_dependencies(filemanager-tests properdesktop-filemanager-daemon)
 add_test(NAME filemanager
          COMMAND ${DBUS_RUN_SESSION_EXECUTABLE} --config-file=${CMAKE_CURRENT_SOURCE_DIR}/dbus-session.conf
                  -- $<TARGET_FILE:filemanager-tests>)

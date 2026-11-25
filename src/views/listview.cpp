@@ -26,7 +26,7 @@
 namespace fm {
 
 using ui::rounding::centeredStart;
-using cutefish::i18n::tr;
+using properdesktop::i18n::tr;
 
 static constexpr double kSmallSpacing = 6;
 

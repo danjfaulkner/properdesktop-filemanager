@@ -3,8 +3,8 @@
 
 #include "core/fileitem.h"
 
-#include "cutefish/files/file_item.h"
-#include "cutefish/files/mime_types.h"
+#include "properdesktop/files/file_item.h"
+#include "properdesktop/files/mime_types.h"
 
 namespace fm {
 

@@ -19,17 +19,17 @@
 #include <sys/stat.h>
 #include <thread>
 
-using namespace cutefish::base;
+using namespace properdesktop::base;
 using dbus::Variant;
 using dbus::VariantMap;
 using fmtest::noise;
 using fmtest::splitFile;
 using fmtest::writeArchive;
 
-static constexpr char kService[] = "org.cutefish.FileOperations";
-static constexpr char kManagerPath[] = "/org/cutefish/FileOperations";
-static constexpr char kManager[] = "org.cutefish.FileOperations.Manager1";
-static constexpr char kTask[] = "org.cutefish.FileOperations.Task1";
+static constexpr char kService[] = "org.properdesktop.FileOperations";
+static constexpr char kManagerPath[] = "/org/properdesktop/FileOperations";
+static constexpr char kManager[] = "org.properdesktop.FileOperations.Manager1";
+static constexpr char kTask[] = "org.properdesktop.FileOperations.Task1";
 
 namespace {
 

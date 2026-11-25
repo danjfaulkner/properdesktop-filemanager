@@ -10,7 +10,7 @@
 #include <string>
 #include <vector>
 
-namespace cutefish::ui {
+namespace properdesktop::ui {
 class DialogWindow;
 class TextField;
 class Window;

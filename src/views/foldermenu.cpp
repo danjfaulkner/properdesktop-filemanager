@@ -12,7 +12,7 @@
 #include <map>
 #include <vector>
 
-using cutefish::i18n::tr;
+using properdesktop::i18n::tr;
 
 namespace fm {
 

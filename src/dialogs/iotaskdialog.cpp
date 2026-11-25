@@ -24,9 +24,9 @@
 #include <filesystem>
 #include <sys/stat.h>
 
-using cutefish::i18n::format;
-using cutefish::i18n::tr;
-using cutefish::i18n::trn;
+using properdesktop::i18n::format;
+using properdesktop::i18n::tr;
+using properdesktop::i18n::trn;
 
 namespace fm {
 

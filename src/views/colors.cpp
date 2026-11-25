@@ -7,7 +7,7 @@
 
 namespace fm {
 
-using namespace cutefish::ui;
+using namespace properdesktop::ui;
 
 void addFmColors(ColorMixer& mixer, const Theme& theme)
 {

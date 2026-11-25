@@ -14,7 +14,7 @@
 #include <optional>
 #include <string>
 
-namespace cutefish::ui {
+namespace properdesktop::ui {
 class Label;
 }
 

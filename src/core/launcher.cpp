@@ -22,7 +22,7 @@
 
 namespace fm::launcher {
 
-static constexpr char kRuntime[] = "org.cutefish.AppRuntime";
+static constexpr char kRuntime[] = "org.properdesktop.AppRuntime";
 static constexpr char kRuntimePath[] = "/AppRuntime";
 
 static base::dbus::Proxy runtime()
@@ -177,8 +177,8 @@ bool launchFile(const std::string& path)
 
 bool canGetBundleRunner()
 {
-    base::dbus::Proxy offer(base::dbus::Connection::session(), "org.cutefish.Services",
-                            "/org/cutefish/Services/BundleRunner", "org.cutefish.Services.BundleRunner");
+    base::dbus::Proxy offer(base::dbus::Connection::session(), "org.properdesktop.Services",
+                            "/org/properdesktop/Services/BundleRunner", "org.properdesktop.Services.BundleRunner");
     offer.setTimeout(std::chrono::seconds(5));
     return offer.property<bool>("installable").value_or(false);
 }

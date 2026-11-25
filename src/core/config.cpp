@@ -15,7 +15,7 @@ static std::string& overridden()
 
 std::string settingsFile()
 {
-    return overridden().empty() ? cutefish::base::paths::cutefishConfig("filemanager") : overridden();
+    return overridden().empty() ? properdesktop::base::paths::properdesktopConfig("filemanager") : overridden();
 }
 
 void setSettingsFile(std::string path)

@@ -21,8 +21,8 @@
 #include "ui/clipboard.h"
 #include "ui/drag.h"
 
-#include "cutefish/files/local_file_system.h"
-#include "cutefish/files/url.h"
+#include "properdesktop/files/local_file_system.h"
+#include "properdesktop/files/url.h"
 
 #include <algorithm>
 #include <fcntl.h>
@@ -31,14 +31,14 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-using cutefish::i18n::format;
-using cutefish::i18n::tr;
-using cutefish::i18n::trc;
-using cutefish::i18n::trn;
+using properdesktop::i18n::format;
+using properdesktop::i18n::tr;
+using properdesktop::i18n::trc;
+using properdesktop::i18n::trn;
 
 namespace fm {
 
-static constexpr char kCutSelection[] = "application/x-cutefish-cutselection";
+static constexpr char kCutSelection[] = "application/x-properdesktop-cutselection";
 
 static const std::vector<std::string> kArchiveMimeTypes = {
     "application/gzip",
@@ -1335,8 +1335,8 @@ void FolderModel::setWallpaperSelected()
     if (!file->isLocalFile())
         return;
 
-    base::dbus::Proxy appearance(base::dbus::Connection::session(), "org.cutefish.Services",
-                                 "/org/cutefish/Services/Appearance", "org.cutefish.Services.Appearance");
+    base::dbus::Proxy appearance(base::dbus::Connection::session(), "org.properdesktop.Services",
+                                 "/org/properdesktop/Services/Appearance", "org.properdesktop.Services.Appearance");
     appearance.send("setWallpaper", file->path);
 }
 
@@ -1370,7 +1370,7 @@ void FolderModel::openInTerminal()
 
 void FolderModel::openChangeWallpaperDialog()
 {
-    launcher::startCommand({"cutefish-settings", "-m", "background"});
+    launcher::startCommand({"properdesktop-settings", "-m", "background"});
 }
 
 void FolderModel::openDeleteDialog()

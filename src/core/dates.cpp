@@ -11,11 +11,11 @@
 
 namespace fm::dates {
 
-using cutefish::base::DateTime;
-using cutefish::base::Locale;
-using cutefish::i18n::format;
-using cutefish::i18n::tr;
-using cutefish::i18n::trn;
+using properdesktop::base::DateTime;
+using properdesktop::base::Locale;
+using properdesktop::i18n::format;
+using properdesktop::i18n::tr;
+using properdesktop::i18n::trn;
 
 static int64_t nowMilliseconds()
 {
@@ -49,7 +49,7 @@ std::string friendlyTime(int64_t milliseconds)
     return shortDateTime(milliseconds);
 }
 
-static int64_t dayNumber(const cutefish::base::CalendarDate& date)
+static int64_t dayNumber(const properdesktop::base::CalendarDate& date)
 {
     // Days since 1970-01-01 for the proleptic Gregorian calendar.
     const int y = date.year - (date.month <= 2);

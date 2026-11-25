@@ -159,6 +159,6 @@ private:
     bool m_hasAttributes = false;
     uint32_t m_fileLinks = 0;
     uint32_t m_folderLinks = 0;
-    cutefish::base::LruCache<uint64_t, std::vector<uint8_t>> m_nodes {8 * 1024 * 1024};
-    cutefish::base::LruCache<uint32_t, Directory> m_directories {256 * 1024};
+    properdesktop::base::LruCache<uint64_t, std::vector<uint8_t>> m_nodes {8 * 1024 * 1024};
+    properdesktop::base::LruCache<uint32_t, Directory> m_directories {256 * 1024};
 };

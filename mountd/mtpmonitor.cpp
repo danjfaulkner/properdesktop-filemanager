@@ -12,7 +12,7 @@
 #include <cstring>
 #include <sys/epoll.h>
 
-using namespace cutefish::base;
+using namespace properdesktop::base;
 
 // Allowing access on a phone's screen drops it off the bus and brings it back.
 static constexpr int kLeaveDelayMs = 5000;

@@ -15,7 +15,7 @@
 #include <string>
 #include <vector>
 
-namespace cutefish::ui {
+namespace properdesktop::ui {
 class Icon;
 class Label;
 class Menu;

@@ -15,7 +15,7 @@
 #include <string>
 #include <vector>
 
-namespace cutefish::ui {
+namespace properdesktop::ui {
 class Application;
 class TrustedConnection;
 }
@@ -28,7 +28,7 @@ class ChooserService;
 class DesktopWindow;
 
 // The file manager process: its windows, its D-Bus services
-// (org.cutefish.FileManager, org.freedesktop.FileManager1, Quick Look and,
+// (org.properdesktop.FileManager, org.freedesktop.FileManager1, Quick Look and,
 // for the session's daemon, the portal's file dialogs) and when it ends.
 class Application : public FileManagerHost
 {
@@ -46,7 +46,7 @@ public:
     void scheduleIdleCheck();
     int exitCode() const { return m_exitCode; }
 
-    // org.cutefish.FileManager
+    // org.properdesktop.FileManager
     void openFiles(const std::vector<std::string>& paths);
     void moveToTrash(const std::vector<std::string>& paths);
     void emptyTrash();
